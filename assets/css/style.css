@@ -1,0 +1,35 @@
+.jumbotron {
+	border-bottom: 1px solid darkgrey;
+}
+
+#page-title {
+	text-align: center;
+}
+
+.character {
+	height: 50px;
+	border-radius: 70px;
+	margin: 0 5px;
+	outline: none;
+}
+
+#user-input {
+
+}
+
+#add-character {
+	height: 50px;
+	border-radius: 70px;
+	margin: 0 5px;
+	outline: none;
+}
+
+#character-input {
+	outline: green;
+}
+
+#gif-display {
+	border-top: 1px solid darkgrey;
+	margin-top: 25px;
+	text-align: center;
+}
