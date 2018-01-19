@@ -2,24 +2,20 @@
 // "http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=5"
 
 // Create array of strings
-
 var characters = ["Leslie Knope", "Jessica Fletcher", "Matilda Wormwood", "Margo, The Magicians", "Mary Poppins", "Professor McGonagall", "Elle Woods", "Miranda Priestley", "Poirot"];
 
 console.log(characters);
 
-
 function displayGifs () {
 
 	var characterName = $(this).attr("data-name");
-
-	var characterNameSearchable = characterName.split(' ').join('+');
+	var searchCharName = characterName.split(' ').join('+');
 
 	console.log(characterName);
 
 
 	var APIKey = "K4gu9r6F7ZOiSnh6j5lkfVKiip1BV9zF";
-
-	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + characterNameSearchable + "&api_key=" + APIKey + "&limit=10";
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchCharName + "&api_key=" + APIKey + "&limit=10";
 
 	$.ajax({
 		url: queryURL,
@@ -33,20 +29,24 @@ function displayGifs () {
 			var characterResults = response.data;
 
 			for (var i = 0; i < characterResults.length; i++) {
+
 				var characterDiv = $("<div>");
 
 				var pGifInfo = $("<p>");
-
 				pGifInfo.text("Gif Rating: " + characterResults[i].rating);
 
 				var characterGif = $("<img>");
-
-				characterGif.attr("src", characterResults[i].images.fixed_height.url);
+				characterGif.attr({
+					"src": characterResults[i].images.fixed_height_still.url,
+					"data-state": "still",
+					"data-still": characterResults[i].images.fixed_height_still.url,
+					"data-animate": characterResults[i].images.fixed_height.url,
+					"class": "fig"
+				});
+				
 
 				characterDiv.append(pGifInfo);
-
 				characterDiv.append(characterGif);
-
 				$("#gif-display").prepend(characterDiv);
 			}
 
@@ -54,13 +54,9 @@ function displayGifs () {
 
 }
 
-// function printResults () {
-
-
-// }
-
 function renderCharacterButtons () {
 	$("#button-display").empty();
+	$("#character-input").val("");
 
 	for(var i = 0; i < characters.length; i++) {
 		var btn = $("<button>");
@@ -71,7 +67,12 @@ function renderCharacterButtons () {
 	}
 }
 
-	$("#add-character").on("click", function(){
+renderCharacterButtons ();
+
+$(document).on("click", ".character", displayGifs);
+
+
+$("#add-character").on("click", function(){
 
 	event.preventDefault();
 
@@ -91,10 +92,26 @@ function renderCharacterButtons () {
 
 });
 
+$(document).on("click", ".fig", function () {
+	console.log(this);
 
-$(document).on("click", ".character", displayGifs);
+	var state = $(this).attr("data-state");
 
-renderCharacterButtons ();
+
+	if (state === "still") {
+		$(this).attr("src", $(this).attr("data-animate"));
+		$(this).attr("data-state", "animate");
+	}
+
+	else {
+		$(this).attr("src", $(this).attr("data-still"));
+		$(this).attr("data-state", "still");
+	}
+
+});
+
+
+
 
 
 
