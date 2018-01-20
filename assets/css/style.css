@@ -65,7 +65,12 @@ label {
 
 #instructions {
 	margin-top: 10px;
-		font-family: 'Cabin Sketch', cursive;
+	margin-left: 15%;
+	margin-right: 15%;
+	opacity: 0.65;
+	background-color: black;
+	color: white;
+	font-weight: bold;
 }
 
 #gif-display {

@@ -6,6 +6,7 @@ var characters = ["Leslie Knope", "Jessica Fletcher", "Matilda Wormwood", "Margo
 
 console.log(characters);
 
+//function to hold AJAX call
 function displayGifs () {
 
 	$("#instructions").empty();
@@ -17,10 +18,11 @@ function displayGifs () {
 
 	console.log(characterName);
 
-
+//AJAX variables for calling from API
 	var APIKey = "K4gu9r6F7ZOiSnh6j5lkfVKiip1BV9zF";
 	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchCharName + "&api_key=" + APIKey + "&limit=10";
 
+//Call giphs from API
 	$.ajax({
 		url: queryURL,
 		method: "GET"
@@ -31,7 +33,7 @@ function displayGifs () {
 			// console.log(JSON.stringify(response));
 
 			var characterResults = response.data;
-
+//Print character gifs and gif info
 			for (var i = 0; i < characterResults.length; i++) {
 
 				var characterDiv = $("<div>");
@@ -59,6 +61,7 @@ function displayGifs () {
 
 }
 
+//Render the buttons that will call different search terms from API
 function renderCharacterButtons () {
 	$("#button-display").empty();
 	$("#character-input").val("");
@@ -72,6 +75,7 @@ function renderCharacterButtons () {
 	}
 }
 
+//Print instructions to animate gifs for user
 function printInstructions() {
 	var gifInstructions = $("<p>");
 		gifInstructions.html("Click on a still to animate (& un-animate!) the gif.");
@@ -82,9 +86,10 @@ function printInstructions() {
 
 renderCharacterButtons ();
 
+//On character button click, run display gif function
 $(document).on("click", ".character", displayGifs);
 
-
+//On add character button click, render new buttons
 $("#add-character").on("click", function(){
 
 	event.preventDefault();
@@ -105,6 +110,7 @@ $("#add-character").on("click", function(){
 
 });
 
+//on gif click, switch between still and gif
 $(document).on("click", ".fig", function () {
 	console.log(this);
 
