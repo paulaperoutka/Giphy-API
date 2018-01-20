@@ -1,5 +1,22 @@
 .jumbotron {
-	border-bottom: 1px solid darkgrey;
+	border-bottom: 3px solid white;
+	margin-right: -20px;
+/*	background-image: url("../images/background5.jpeg");*/
+	background-color: lightgrey;
+	opacity: 0.75;
+	font-family: 'Cabin Sketch', cursive;
+	color: black;
+}
+
+body {
+	background-image: url("../images/background5.jpeg");
+	background-size: fill;
+	margin-bottom: 25px;
+	margin-right: -25px;
+	font-family: 'Poiret One', cursive;
+	font-size: 20px;
+	color: white;
+
 }
 
 #page-title {
@@ -9,11 +26,28 @@
 .character {
 	height: 50px;
 	border-radius: 70px;
-	margin: 0 5px;
 	outline: none;
+	font-size: 25px;
+	margin: 2px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#character-form {
+	color: black;
+}
+
+label {
+	font-family: 'Cabin Sketch', cursive;
+	font-size: 30px;
+/*	color: #fffdc6;*/
+	color: #fbffc6;
+/*	color: #e0e8b4;*/
 }
 
 #user-input {
+/*	border-bottom: 2px solid white;*/
+	padding-bottom: 25px;
 
 }
 
@@ -22,14 +56,41 @@
 	border-radius: 70px;
 	margin: 0 5px;
 	outline: none;
+
 }
 
 #character-input {
 	outline: green;
 }
 
+#instructions {
+	margin-top: 10px;
+		font-family: 'Cabin Sketch', cursive;
+}
+
 #gif-display {
-	border-top: 1px solid darkgrey;
 	margin-top: 25px;
 	text-align: center;
+}
+
+
+.charDiv {
+	margin: 5px;
+}
+
+p {
+	margin: 5px;
+}
+
+.gif-info {
+	background-color: black;
+	opacity: 0.6;
+	color: white;
+	font-weight: bold;
+}
+
+.fig {
+	border: 6px solid white;
+	padding: 2px;
+	margin: 0 5px 5px 5px;
 }

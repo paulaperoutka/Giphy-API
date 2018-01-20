@@ -2,11 +2,15 @@
 // "http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=5"
 
 // Create array of strings
-var characters = ["Leslie Knope", "Jessica Fletcher", "Matilda Wormwood", "Margo, The Magicians", "Mary Poppins", "Professor McGonagall", "Elle Woods", "Miranda Priestley", "Poirot"];
+var characters = ["Leslie Knope", "Jessica Fletcher", "Matilda Wormwood", "Margo, The Magicians", "Mary Poppins", "Professor McGonagall", "Elle Woods", "Miranda Priestly", "Poirot"];
 
 console.log(characters);
 
 function displayGifs () {
+
+	$("#instructions").empty();
+	$("#gif-display").empty();
+	printInstructions();	
 
 	var characterName = $(this).attr("data-name");
 	var searchCharName = characterName.split(' ').join('+');
@@ -31,8 +35,10 @@ function displayGifs () {
 			for (var i = 0; i < characterResults.length; i++) {
 
 				var characterDiv = $("<div>");
+				characterDiv.addClass("pull-left charDiv");
 
 				var pGifInfo = $("<p>");
+				pGifInfo.attr("class", "gif-info")
 				pGifInfo.text("Gif Rating: " + characterResults[i].rating);
 
 				var characterGif = $("<img>");
@@ -43,7 +49,6 @@ function displayGifs () {
 					"data-animate": characterResults[i].images.fixed_height.url,
 					"class": "fig"
 				});
-				
 
 				characterDiv.append(pGifInfo);
 				characterDiv.append(characterGif);
@@ -65,6 +70,14 @@ function renderCharacterButtons () {
 		btn.text(characters[i]);
 		$("#button-display").append(btn);
 	}
+}
+
+function printInstructions() {
+	var gifInstructions = $("<p>");
+		gifInstructions.html("Click on a still to animate (& un-animate!) the gif.");
+		gifInstructions.addClass("text-center");
+		gifInstructions.attr("id", "instructions");
+		$("#instructions").append(gifInstructions);
 }
 
 renderCharacterButtons ();
